@@ -10,7 +10,7 @@ gem 'solid_cable'
 gem 'bootsnap', require: false
 gem 'kamal', require: false
 gem 'thruster', require: false
-
+gem 'rack-cors'
 gem 'dotenv-rails'
 # gem 'sidekiq'
 # gem 'dry-validation'
