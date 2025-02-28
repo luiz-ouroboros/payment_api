@@ -21,12 +21,12 @@ RSpec.describe TransactionsController, type: :controller do
     context 'with valid parameters' do
       it 'creates a new Transaction' do
         expect {
-          post :create, params: { transaction: valid_attributes }
+          post :create, params: valid_attributes
         }.to change(Transaction, :count).by(1)
       end
 
       it 'returns a successful response' do
-        post :create, params: { transaction: valid_attributes }
+        post :create, params: valid_attributes
         expect(response).to have_http_status(:created)
       end
     end
@@ -34,12 +34,12 @@ RSpec.describe TransactionsController, type: :controller do
     context 'with invalid parameters' do
       it 'does not create a new Transaction' do
         expect {
-          post :create, params: { transaction: invalid_attributes }
+          post :create, params: invalid_attributes
         }.to_not change(Transaction, :count)
       end
 
       it 'returns an unprocessable entity response' do
-        post :create, params: { transaction: invalid_attributes }
+        post :create, params: invalid_attributes
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
