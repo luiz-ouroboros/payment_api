@@ -14,7 +14,7 @@ gem 'rack-cors'
 gem 'dotenv-rails'
 # gem 'sidekiq'
 # gem 'dry-validation'
-# gem 'u-case'
+gem 'u-case'
 
 group :development, :test do
   gem 'pry'
