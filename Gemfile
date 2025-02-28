@@ -13,7 +13,7 @@ gem 'thruster', require: false
 gem 'rack-cors'
 gem 'dotenv-rails'
 # gem 'sidekiq'
-# gem 'dry-validation'
+gem 'dry-validation'
 gem 'u-case'
 
 group :development, :test do
