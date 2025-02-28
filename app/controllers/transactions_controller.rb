@@ -5,19 +5,8 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    transaction = Transaction.new(transaction_params)
-    transaction.status = transaction.installment.even? ? 'aprovado' : 'reprovado'
-
-    if transaction.save
-      render json: transaction, status: :created
-    else
-      render json: transaction.errors, status: :unprocessable_entity
-    end
-  end
-
-  private
-
-  def transaction_params
-    params.permit(:amount, :installment, :payment_method)
+    process_usecase(Transactions::Create) { |result|
+      render json: result[:transaction], status: :created
+    }
   end
 end

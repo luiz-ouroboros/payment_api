@@ -43,6 +43,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_27_224750) do
     t.string "status", null: false
     t.datetime "approved_at"
     t.datetime "reproved_at"
+    t.string "gateway", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
