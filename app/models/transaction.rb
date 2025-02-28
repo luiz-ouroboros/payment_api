@@ -1,4 +1,6 @@
 class Transaction < ApplicationRecord
+  audited
+
   has_many :receivables, dependent: :destroy
 
   STATUS_SENDING       = 'sending'.freeze

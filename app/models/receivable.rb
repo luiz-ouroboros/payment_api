@@ -1,4 +1,6 @@
 class Receivable < ApplicationRecord
+  audited
+
   belongs_to :transaction
 
   STATUS_PENDING   = 'pending'.freeze

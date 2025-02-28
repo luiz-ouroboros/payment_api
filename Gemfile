@@ -15,6 +15,7 @@ gem 'dotenv-rails'
 # gem 'sidekiq'
 gem 'dry-validation'
 gem 'u-case'
+gem 'audited'
 
 group :development, :test do
   gem 'pry'
