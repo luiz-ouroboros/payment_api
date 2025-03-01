@@ -6,16 +6,16 @@ Este documento contém uma checklist dos requisitos e tarefas para o desenvolvim
 
 - [ ] Cálculo de retenção por parcelas
 - [ ] Liquidação de recebíveis
-- [ ] Transações parceladas
+- [x] Transações parceladas
 - [x] Controle de status das transações
 - [x] Controle de status das parcelas
 
-- [ ] Realizar transações de pagamento e dividir os recebíveis de uma transação em várias parcelas
+- [x] Realizar transações de pagamento e dividir os recebíveis de uma transação em várias parcelas
 - [x] Retorno indicando se a transação foi aprovada ou reprovada
-- [ ] Gateway Fake (parcelas ímpares são reprovadas, e parcelas pares são aprovadas)
+- [x] Gateway Fake (parcelas ímpares são reprovadas, e parcelas pares são aprovadas)
 - [x] Manter a flexibilidade para integrar com gateways reais no futuro
 - [ ] O valor de retenção será de 0,99% por parcela adicionada
-- [ ] Utilizar processamento em background para a criação dos recebíveis utilizando a ferramenta Sidekiq
+- [x] Utilizar processamento em background para a criação dos recebíveis utilizando a ferramenta Sidekiq
 
 ## 2. Tabela de Transações
 
@@ -69,7 +69,7 @@ Cada parcela gerada deverá ter as seguintes informações:
 
 - [x] O código deve ser entregue em um repositório Git público
 - [x] Todos os testes devem ser escritos utilizando RSpec
-- [ ] A aplicação deve estar configurada para rodar com Sidekiq para processamento assíncrono de recebíveis
+- [x] A aplicação deve estar configurada para rodar com Sidekiq para processamento assíncrono de recebíveis
 - [ ] O candidato deve garantir que todos os requisitos sejam atendidos e que a API funcione conforme o esperado
 - [ ] O código deve ser bem estruturado e legível
 - [ ] O código deve ter boa cobertura de testes
