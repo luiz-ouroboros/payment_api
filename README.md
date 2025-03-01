@@ -34,11 +34,11 @@ Este documento contém uma checklist dos requisitos e tarefas para o desenvolvim
   - [ ] Implementar método para calcular valor de retenção da parcela
 
 Cada parcela gerada deverá ter as seguintes informações:
-- [ ] Data de agendamento da parcela, que será a data da transação somada ao número de meses correspondente ao número da parcela
-- [ ] Data de pagamento, inicialmente nula e preenchida durante o processo de liquidação
-- [ ] Status inicialmente "pendente", alterado para "liquidado" após a liquidação
-- [ ] amount_to_settle: Valor a ser liquidado
-- [ ] amount_settled: Inicialmente 0, será preenchido após a liquidação
+- [x] **schedule_date** Data de agendamento da parcela, que será a data da transação somada ao número de meses correspondente ao número da parcela
+- [x] **liquidation_date** Data de pagamento, inicialmente nula e preenchida durante o processo de liquidação
+- [x] **status** Status inicialmente "pendente", alterado para "liquidado" após a liquidação
+- [x] **amount_to_settle** Valor a ser liquidado
+- [x] **amount_settled** Inicialmente 0, será preenchido após a liquidação
 
 ## 5. Liquidação de Recebíveis via Cron
 

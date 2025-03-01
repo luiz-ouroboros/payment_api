@@ -12,10 +12,10 @@ class PaymentTransactions::Create < UseCase
   def call!
     transaction {
       validate_params(UseContract, params)
-      .then(:build_payment_transaction)
-      .then(:validation_by_gateway)
+      .then(apply(:build_payment_transaction))
+      .then(apply(:validation_by_gateway))
       .then(apply(:save_payment_transaction))
-    }.then(:send_to_gateway_async)
+    }.then(apply(:send_to_gateway_async))
       .then(apply(:output))
   end
 
@@ -41,6 +41,10 @@ class PaymentTransactions::Create < UseCase
 
     Success(:save_payment_transaction_success, result: { payment_transaction: payment_transaction })
   end
+
+  # def create_installments(payment_transaction:, **)
+  #   call(Receivables::CreateByPaymentTransaction, payment_transaction: payment_transaction)
+  # end
 
   def send_to_gateway_async(payment_transaction:, **)
     use_case = ::Gateways.dig(payment_transaction.gateway, :send_async)

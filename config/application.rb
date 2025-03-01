@@ -32,6 +32,6 @@ module PaymentApi
 
     config.time_zone = 'America/Sao_Paulo'
 
-    config.active_record.yaml_column_permitted_classes = [BigDecimal]
+    config.active_record.yaml_column_permitted_classes = [BigDecimal, Date]
   end
 end

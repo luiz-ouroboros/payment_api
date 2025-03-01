@@ -3,6 +3,7 @@ module Gateways
     fake_gateway: {
       creation_validation: Gateways::FakeGateway::CreationValidation,
       send_async: Gateways::FakeGateway::SendAsync,
+      send: Gateways::FakeGateway::Send,
     }
   }
 
