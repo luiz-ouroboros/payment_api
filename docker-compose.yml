@@ -28,16 +28,16 @@ services:
     ports:
       - "6379:6379"
 
-  # sidekiq:
-  #   build: .
-  #   command: bash -c "bundle exec sidekiq"
-  #   volumes:
-  #     - ".:/app"
-  #   depends_on:
-  #     - db
-  #   environment:
-  #     REDIS_URL: redis://redis:6379/0
-  #     DATABASE_HOST: db
+  sidekiq:
+    build: .
+    command: bash -c "bundle exec sidekiq"
+    volumes:
+      - ".:/app"
+    depends_on:
+      - db
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      DATABASE_HOST: db
 
 volumes:
   dbdata:

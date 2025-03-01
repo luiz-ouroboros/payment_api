@@ -12,7 +12,7 @@ gem 'kamal', require: false
 gem 'thruster', require: false
 gem 'rack-cors'
 gem 'dotenv-rails'
-# gem 'sidekiq'
+gem 'sidekiq'
 gem 'dry-validation'
 gem 'u-case'
 gem 'audited'
@@ -27,7 +27,6 @@ group :development, :test do
   gem 'brakeman', require: false
   gem 'rubocop-rails-omakase', require: false
   gem 'rspec-rails', '~> 6.0'
-  # gem 'rspec-sidekiq'
   gem 'faker'
   gem 'factory_bot_rails'
 end
@@ -39,5 +38,6 @@ group :development do
 end
 
 group :test do
+  gem 'rspec-sidekiq'
   gem 'rspec-json_matcher', '~> 0.2.0'
 end
