@@ -34,4 +34,29 @@ class PaymentTransaction < ApplicationRecord
     visa: PAYMENT_METHOD_VISA,
     master: PAYMENT_METHOD_MASTER,
   }
+
+  def fee
+    InstallmentFee.find_by(gateway: gateway, installments: installments)&.fee_percentage
+  end
+
+  def retention_value
+    return if fee.nil?
+    return if amount.nil?
+
+    amount * (fee / 100)
+  end
+
+  def retention_value!
+    retention_value || raise(ArgumentError, 'fee or amount is nil')
+  end
+
+  def transfer_value
+    return if retention_value.nil?
+
+    amount - retention_value
+  end
+
+  def transfer_value!
+    transfer_value || raise(ArgumentError, 'fee or amount is nil')
+  end
 end
