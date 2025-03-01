@@ -13,9 +13,10 @@ class Transactions::Create < UseCase
     transaction {
       validate_params(UseContract, params)
       .then(:build_transaction)
-      .then(:process_by_gateway)
+      .then(:validation_by_gateway)
       .then(apply(:save_transaction))
-    }.then(:output)
+    }.then(:send_to_gateway_async)
+      .then(apply(:output))
   end
 
   private
@@ -30,8 +31,8 @@ class Transactions::Create < UseCase
     Success(:build_transaction_success, result: { transaction: transaction })
   end
 
-  def process_by_gateway(transaction:, **)
-    use_case = Transactions::Gateways.dig(transaction.gateway, :creation_validation)
+  def validation_by_gateway(transaction:, **)
+    use_case = ::Gateways.dig(transaction.gateway, :creation_validation)
     call(use_case, transaction: transaction)
   end
 
@@ -39,6 +40,11 @@ class Transactions::Create < UseCase
     transaction.save!
 
     Success(:save_transaction_success, result: { transaction: transaction })
+  end
+
+  def send_to_gateway_async(transaction:, **)
+    use_case = ::Gateways.dig(transaction.gateway, :send_async)
+    call(use_case, transaction: transaction)
   end
 
   def output(transaction:, **)

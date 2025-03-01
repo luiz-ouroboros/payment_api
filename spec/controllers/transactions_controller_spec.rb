@@ -11,7 +11,7 @@ RSpec.describe TransactionsController, type: :controller do
       status: ::Types::Transactions::Status,
       approved_at: nil,
       reproved_at: nil,
-      gateway: ::Types::Transactions::Gateway,
+      gateway: ::Types::Gateway,
       created_at: ::Types::I18nDateTime,
       updated_at: ::Types::I18nDateTime,
     }
@@ -24,6 +24,7 @@ RSpec.describe TransactionsController, type: :controller do
 
         expect(response.body).to be_json_as(transaction_pattern)
         expect(response).to have_http_status(:created)
+        expect(Gateways::FakeGateway::SendWorker).to have_enqueued_sidekiq_job(body['id'])
       end
     end
 
