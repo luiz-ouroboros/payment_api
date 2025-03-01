@@ -4,6 +4,6 @@ FactoryBot.define do
     installment { 12 }
     payment_method { Transaction::PAYMENT_METHODS.sample }
     status { Transaction::STATUS_SENDING }
-    gateway { Transactions::Gateways::LIST.sample }
+    gateway { ::Gateways::LIST.sample }
   end
 end

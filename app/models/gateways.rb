@@ -1,7 +1,8 @@
-module Transactions::Gateways
+module Gateways
   ACTIONS = {
     fake_gateway: {
-      creation_validation: Transactions::Gateways::FakeGateway::CreationValidation
+      creation_validation: Gateways::FakeGateway::CreationValidation,
+      send_async: Gateways::FakeGateway::SendAsync,
     }
   }
 

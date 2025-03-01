@@ -1,4 +1,4 @@
-class Transactions::Gateways::FakeGateway::CreationValidation < UseCase
+class Gateways::FakeGateway::CreationValidation < UseCase
   attributes :transaction
 
   def call!
