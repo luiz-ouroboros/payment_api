@@ -3,6 +3,7 @@ class CreateInstallmentFees < ActiveRecord::Migration[8.0]
     create_table :installment_fees do |t|
       t.integer :installments, null: false
       t.decimal :fee_percentage, precision: 5, scale: 2, null: false
+      t.string :gateway, null: true
       t.timestamps
     end
   end

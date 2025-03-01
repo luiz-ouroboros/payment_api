@@ -39,6 +39,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_28_174623) do
   create_table "installment_fees", force: :cascade do |t|
     t.integer "installments", null: false
     t.decimal "fee_percentage", precision: 5, scale: 2, null: false
+    t.string "gateway"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
