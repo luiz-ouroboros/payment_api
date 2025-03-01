@@ -1,7 +1,7 @@
 class Receivable < ApplicationRecord
   audited
 
-  belongs_to :transaction
+  belongs_to :payment_transaction
 
   STATUS_PENDING   = 'pending'.freeze
   STATUS_SETTLED   = 'settled'.freeze

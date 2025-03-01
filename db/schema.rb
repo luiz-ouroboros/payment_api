@@ -43,22 +43,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_28_174623) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "receivables", force: :cascade do |t|
-    t.bigint "transaction_id", null: false
-    t.integer "installment_number", null: false
-    t.date "schedule_date", null: false
-    t.date "liquidation_date"
-    t.string "status", default: "pending", null: false
-    t.datetime "pending_at"
-    t.datetime "settled_at"
-    t.decimal "amount_to_settle", precision: 10, scale: 2, null: false
-    t.decimal "amount_settled", precision: 10, scale: 2, default: "0.0", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["transaction_id"], name: "index_receivables_on_transaction_id"
-  end
-
-  create_table "transactions", force: :cascade do |t|
+  create_table "payment_transactions", force: :cascade do |t|
     t.decimal "amount", precision: 10, scale: 2, null: false
     t.integer "installment", null: false
     t.string "payment_method", null: false
@@ -70,5 +55,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_28_174623) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "receivables", "transactions"
+  create_table "receivables", force: :cascade do |t|
+    t.bigint "payment_transaction_id", null: false
+    t.integer "installment_number", null: false
+    t.date "schedule_date", null: false
+    t.date "liquidation_date"
+    t.string "status", default: "pending", null: false
+    t.datetime "pending_at"
+    t.datetime "settled_at"
+    t.decimal "amount_to_settle", precision: 10, scale: 2, null: false
+    t.decimal "amount_settled", precision: 10, scale: 2, default: "0.0", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_transaction_id"], name: "index_receivables_on_payment_transaction_id"
+  end
+
+  add_foreign_key "receivables", "payment_transactions"
 end

@@ -1,8 +1,8 @@
 class Gateways::FakeGateway::CreationValidation < UseCase
-  attributes :transaction
+  attributes :payment_transaction
 
   def call!
-    return Success(:creation_validation_success) if transaction.installment.even?
+    return Success(:creation_validation_success) if payment_transaction.installment.even?
 
     Failure(
       :validation_error,

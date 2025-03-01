@@ -1,7 +1,7 @@
 class CreateReceivables < ActiveRecord::Migration[8.0]
   def change
     create_table :receivables do |t|
-      t.references :transaction, null: false, foreign_key: true
+      t.references :payment_transaction, null: false, foreign_key: true
       t.integer :installment_number, null: false
       t.date :schedule_date, null: false
       t.date :liquidation_date

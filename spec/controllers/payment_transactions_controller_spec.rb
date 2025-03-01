@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe TransactionsController, type: :controller do
-  let(:valid_attributes) { attributes_for(:transaction) }
-  let(:transaction_pattern) {
+RSpec.describe PaymentTransactionsController, type: :controller do
+  let(:valid_attributes) { attributes_for(:payment_transaction) }
+  let(:payment_transaction_pattern) {
     {
       id: Integer,
-      amount: ::Types::Transactions::Amount,
-      installment: ::Types::Transactions::Installment,
-      payment_method: ::Types::Transactions::PaymentMethod,
-      status: ::Types::Transactions::Status,
+      amount: ::Types::PaymentTransactions::Amount,
+      installment: ::Types::PaymentTransactions::Installment,
+      payment_method: ::Types::PaymentTransactions::PaymentMethod,
+      status: ::Types::PaymentTransactions::Status,
       approved_at: nil,
       reproved_at: nil,
       gateway: ::Types::Gateway,
@@ -22,7 +22,7 @@ RSpec.describe TransactionsController, type: :controller do
       it 'when use valid params' do
         post :create, params: valid_attributes
 
-        expect(response.body).to be_json_as(transaction_pattern)
+        expect(response.body).to be_json_as(payment_transaction_pattern)
         expect(response).to have_http_status(:created)
         expect(Gateways::FakeGateway::SendWorker).to have_enqueued_sidekiq_job(body['id'])
       end
@@ -135,7 +135,7 @@ RSpec.describe TransactionsController, type: :controller do
           valid_attributes[:payment_method] = -1
           pattern = {
             payment_method: [I18n.t('dry_validation.errors.inclusion?',
-                                    list: ::Transaction::PAYMENT_METHODS.join(', '))]
+                                    list: ::PaymentTransaction::PAYMENT_METHODS.join(', '))]
           }
 
           post :create, params: valid_attributes
@@ -149,7 +149,7 @@ RSpec.describe TransactionsController, type: :controller do
 
   describe 'GET #index' do
     before do
-      create_list(:transaction, 3)
+      create_list(:payment_transaction, 3)
     end
 
     it 'returns a successful response' do
@@ -157,7 +157,7 @@ RSpec.describe TransactionsController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'returns all transactions' do
+    it 'returns all payment_transactions' do
       get :index
       json_response = JSON.parse(response.body)
       expect(json_response.size).to eq(3)

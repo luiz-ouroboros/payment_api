@@ -1,4 +1,4 @@
-class Transaction < ApplicationRecord
+class PaymentTransaction < ApplicationRecord
   audited
 
   has_many :receivables, dependent: :destroy

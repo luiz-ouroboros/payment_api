@@ -1,8 +1,8 @@
 class Gateways::FakeGateway::SendAsync < UseCase
-  attributes :transaction
+  attributes :payment_transaction
 
   def call!
-    jid = Gateways::FakeGateway::SendWorker.perform_async(transaction.id)
+    jid = Gateways::FakeGateway::SendWorker.perform_async(payment_transaction.id)
 
     Success(:send_async_success, result: { jid: jid })
   end
