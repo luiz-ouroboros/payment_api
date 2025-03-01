@@ -5,4 +5,4 @@ pt:
   errors:
     gateways:
       fake_gateway:
-        installment_odd: "A quantidade de parcelas deve ser um número par"
+        installments_odd: "A quantidade de parcelas deve ser um número par"

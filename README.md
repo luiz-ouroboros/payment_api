@@ -14,7 +14,7 @@ Este documento contém uma checklist dos requisitos e tarefas para o desenvolvim
 - [x] Retorno indicando se a transação foi aprovada ou reprovada
 - [x] Gateway Fake (parcelas ímpares são reprovadas, e parcelas pares são aprovadas)
 - [x] Manter a flexibilidade para integrar com gateways reais no futuro
-- [ ] O valor de retenção será de 0,99% por parcela adicionada
+- [x] O valor de retenção será de 0,99% por parcela adicionada
 - [x] Utilizar processamento em background para a criação dos recebíveis utilizando a ferramenta Sidekiq
 
 ## 2. Tabela de Transações

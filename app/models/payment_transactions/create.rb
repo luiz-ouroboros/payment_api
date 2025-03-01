@@ -4,7 +4,7 @@ class PaymentTransactions::Create < UseCase
   class UseContract < ContractScheme
     params do
       required(:amount).filled(::Types::PaymentTransactions::Amount)
-      required(:installment).filled(::Types::PaymentTransactions::Installment)
+      required(:installments).filled(::Types::PaymentTransactions::Installment)
       required(:payment_method).filled(::Types::PaymentTransactions::PaymentMethod)
     end
   end

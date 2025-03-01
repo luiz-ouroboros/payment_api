@@ -10,14 +10,14 @@ class Gateways::FakeGateway::Send < UseCase
   private
 
   def call_gateway_api_client
-    if payment_transaction.installment.even?
+    if payment_transaction.installments.even?
       payment_transaction.approved!
       Success(:call_gateway_api_client_success, result: { payment_transaction: payment_transaction })
     else
       payment_transaction.reproved!
       Failure(
         :validation_error,
-        result: build_error(:installment, 'errors.gateways.fake_gateway.installment_odd')
+        result: build_error(:installments, 'errors.gateways.fake_gateway.installments_odd')
       )
     end
   end

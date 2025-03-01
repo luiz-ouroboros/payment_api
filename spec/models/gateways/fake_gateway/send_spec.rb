@@ -5,7 +5,7 @@ RSpec.describe Gateways::FakeGateway::Send do
 
   context 'successfull' do
     it 'When the payment transaction has a even number of installments' do
-      payment_transaction.update!(installment: 2)
+      payment_transaction.update!(installments: 2)
 
       result = described_class.call(payment_transaction: payment_transaction)
 
@@ -20,8 +20,8 @@ RSpec.describe Gateways::FakeGateway::Send do
 
   context 'failure' do
     it 'When the payment transaction has a odd number of installments' do
-      payment_transaction.update!(installment: 3)
-      pattern = { installment: [I18n.t('errors.gateways.fake_gateway.installment_odd')] }
+      payment_transaction.update!(installments: 3)
+      pattern = { installments: [I18n.t('errors.gateways.fake_gateway.installments_odd')] }
 
       result = described_class.call(payment_transaction: payment_transaction)
 

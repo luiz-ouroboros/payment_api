@@ -6,7 +6,7 @@ RSpec.describe PaymentTransactionsController, type: :controller do
     {
       id: Integer,
       amount: ::Types::PaymentTransactions::Amount,
-      installment: ::Types::PaymentTransactions::Installment,
+      installments: ::Types::PaymentTransactions::Installment,
       payment_method: ::Types::PaymentTransactions::PaymentMethod,
       status: ::Types::PaymentTransactions::Status,
       approved_at: nil,
@@ -30,10 +30,10 @@ RSpec.describe PaymentTransactionsController, type: :controller do
 
     context 'failure' do
       context 'when gateway is fake_gateway' do
-        it 'when installment is odd' do
-          valid_attributes[:installment] = 1
+        it 'when installments is odd' do
+          valid_attributes[:installments] = 1
           pattern = {
-            installment: [I18n.t('errors.gateways.fake_gateway.installment_odd')]
+            installments: [I18n.t('errors.gateways.fake_gateway.installments_odd')]
           }
 
           post :create, params: valid_attributes
@@ -73,10 +73,10 @@ RSpec.describe PaymentTransactionsController, type: :controller do
         end
       end
 
-      context 'when installment' do
+      context 'when installments' do
         it 'not send' do
-          pattern = { installment: [I18n.t('dry_validation.errors.key?')] }
-          valid_attributes.delete(:installment)
+          pattern = { installments: [I18n.t('dry_validation.errors.key?')] }
+          valid_attributes.delete(:installments)
 
           post :create, params: valid_attributes
 
@@ -84,8 +84,8 @@ RSpec.describe PaymentTransactionsController, type: :controller do
           expect(response.body).to be_json_as(pattern)
         end
         it 'is nil' do
-          pattern = { installment: [I18n.t('dry_validation.errors.filled?')] }
-          valid_attributes[:installment] = nil
+          pattern = { installments: [I18n.t('dry_validation.errors.filled?')] }
+          valid_attributes[:installments] = nil
 
           post :create, params: valid_attributes
 
@@ -93,8 +93,8 @@ RSpec.describe PaymentTransactionsController, type: :controller do
           expect(response.body).to be_json_as(pattern)
         end
         it 'is negative' do
-          pattern = { installment: [I18n.t('dry_validation.errors.gteq?', num: 1)] }
-          valid_attributes[:installment] = -1
+          pattern = { installments: [I18n.t('dry_validation.errors.gteq?', num: 1)] }
+          valid_attributes[:installments] = -1
 
           post :create, params: valid_attributes
 
@@ -102,8 +102,8 @@ RSpec.describe PaymentTransactionsController, type: :controller do
           expect(response.body).to be_json_as(pattern)
         end
         it 'is greate then 12' do
-          pattern = { installment: [I18n.t('dry_validation.errors.lteq?', num: 12)] }
-          valid_attributes[:installment] = 13
+          pattern = { installments: [I18n.t('dry_validation.errors.lteq?', num: 12)] }
+          valid_attributes[:installments] = 13
 
           post :create, params: valid_attributes
 
