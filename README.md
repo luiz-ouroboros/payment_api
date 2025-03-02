@@ -51,7 +51,7 @@ Cada parcela gerada deverá ter as seguintes informações:
 
 - [x] Implementar um endpoint para listar transações com os seguintes filtros:
   - [x] Filtro por intervalo de datas (se não informado, considerar os últimos 30 dias)
-  - [ ] Paginação dos resultados
+  - [x] Paginação dos resultados
 
 ## 7. Listagem de Recebíveis
 

@@ -3,6 +3,7 @@ module Types
 
   I18nDateTime = Types::String.constrained(format: I18n.t('regexp.datetime'))
   Gateway = Types::Coercible::String.enum(*::Gateways::LIST.map(&:to_s))
+  PerPage = Types::Coercible::Integer.constrained(gteq: 1, lteq: 250)
 
   module PaymentTransactions
     Amount = Types::Coercible::Float.constrained(gt: 0)

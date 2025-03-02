@@ -19,11 +19,40 @@ RSpec.describe PaymentTransactionsController, type: :controller do
   }
 
   describe 'GET #index' do
+    let(:pattern) do
+      {
+        data: [payment_transaction_pattern],
+        meta: {
+          paginate: {
+            current_page: Integer,
+            per_page: Integer,
+            total: Integer,
+            pages: Integer
+          }
+        }
+      }
+    end
+
+    it 'pagination' do
+      create_list(:payment_transaction, 30)
+      pattern[:data] = [payment_transaction_pattern] * 10
+      pattern[:meta][:paginate] = {
+        current_page: 2,
+        per_page: 10,
+        total: 30,
+        pages: 3
+      }
+
+      get :index, params: { page: 2, per_page: 10 }
+
+      expect(response.body).to be_json_as(pattern)
+      expect(response).to have_http_status(:ok)
+    end
+
     context 'when no date filters are provided' do
       it 'return the payment transaction on the end of default date filter' do
         payment_transaction = create(:payment_transaction, created_at: Date.today)
         payment_transaction_pattern[:id] = payment_transaction.id
-        pattern = { data: [payment_transaction_pattern] }
 
         get :index
 
@@ -33,7 +62,7 @@ RSpec.describe PaymentTransactionsController, type: :controller do
 
       it 'not return the payment transaction after the end of default date filter' do
         create(:payment_transaction, created_at: Date.today + 1.day)
-        pattern = { data: [] }
+        pattern[:data] = []
 
         get :index
 
@@ -45,7 +74,6 @@ RSpec.describe PaymentTransactionsController, type: :controller do
         createded_at = Date.today - PaymentTransactions::Get::DEFAULT_DAYS.days
         payment_transaction = create(:payment_transaction, created_at: createded_at)
         payment_transaction_pattern[:id] = payment_transaction.id
-        pattern = { data: [payment_transaction_pattern] }
 
         get :index
 
@@ -56,7 +84,7 @@ RSpec.describe PaymentTransactionsController, type: :controller do
       it 'not return the payment transaction before the start of default date filter' do
         createded_at = Date.today - PaymentTransactions::Get::DEFAULT_DAYS.days - 1.day
         create(:payment_transaction, created_at: createded_at)
-        pattern = { data: [] }
+        pattern[:data] = []
 
         get :index
 
@@ -71,7 +99,6 @@ RSpec.describe PaymentTransactionsController, type: :controller do
         in_filter     = create(:payment_transaction, created_at: Date.today - 10.days)
         after_filter  = create(:payment_transaction, created_at: Date.today)
         payment_transaction_pattern[:id] = in_filter.id
-        pattern = { data: [payment_transaction_pattern] }
 
         get :index, params: {
           start_date: (Date.today - 15.days).to_s,

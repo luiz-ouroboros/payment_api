@@ -2,11 +2,14 @@ class PaymentTransactions::Get < UseCase
   attributes :params
 
   DEFAULT_DAYS = (ENV['DEFAULT_DAYS']&.to_i || 30)
+  DEFAULT_PER_PAGE = (ENV['DEFAULT_PER_PAGE']&.to_i || 20)
 
   class UseContract < ContractScheme
     params do
       optional(:start_date).maybe(:date)
       optional(:end_date).maybe(:date)
+      optional(:page).maybe(:integer)
+      optional(:per_page).maybe(::Types::PerPage)
     end
 
     rule(:start_date, :end_date) do
@@ -29,7 +32,7 @@ class PaymentTransactions::Get < UseCase
       .then(:load_payment_transactions)
       .then(:includes)
       .then(:filter_by_date)
-      .then(:order)
+      .then(:paginate)
       .then(:output)
   end
 
@@ -56,13 +59,28 @@ class PaymentTransactions::Get < UseCase
     })
   end
 
-  def order(payment_transactions:, **)
-    Success(:order_success, result: {
-      payment_transactions: payment_transactions.order(id: :desc)
+  def paginate(params:, payment_transactions:, **)
+    per_page = params[:per_page] || DEFAULT_PER_PAGE
+    page     = params[:page] || 1
+
+    payment_transactions = payment_transactions.paginate(page: page, per_page: per_page)
+                                               .order(id: :desc)
+
+    meta = {
+      paginate: {
+        current_page: payment_transactions.current_page,
+        per_page: payment_transactions.per_page,
+        total: payment_transactions.total_entries,
+        pages: payment_transactions.total_pages
+      }
+    }
+
+    Success(:paginate_success, result: {
+      payment_transactions: payment_transactions, meta: meta
     })
   end
 
-  def output(payment_transactions:, **)
-    Success(:get_success, result: { payment_transactions: payment_transactions })
+  def output(payment_transactions:, meta:, **)
+    Success(:get_success, result: { payment_transactions: payment_transactions, meta: meta })
   end
 end

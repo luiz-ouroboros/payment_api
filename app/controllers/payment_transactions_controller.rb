@@ -1,7 +1,7 @@
 class PaymentTransactionsController < ApplicationController
   def index
     process_usecase(PaymentTransactions::Get) { |result|
-      render json: { data: result[:payment_transactions] }
+      render json: { data: result[:payment_transactions], meta: result[:meta] }
     }
   end
 
