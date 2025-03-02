@@ -5,7 +5,7 @@ Este documento contém uma checklist dos requisitos e tarefas para o desenvolvim
 ## 1. Requisitos
 
 - [x] Cálculo de retenção por parcelas
-- [ ] Liquidação de recebíveis
+- [x] Liquidação de recebíveis
 - [x] Transações parceladas
 - [x] Controle de status das transações
 - [x] Controle de status das parcelas
@@ -42,10 +42,10 @@ Cada parcela gerada deverá ter as seguintes informações:
 
 ## 5. Liquidação de Recebíveis via Cron
 
-- [ ] Implementar uma funcionalidade acionada por um cron job que liquida os recebíveis, com base na data de agendamento:
-  - [ ] Se a data de agendamento for igual à data atual e o status da parcela for "pendente", a parcela será marcada como "liquidado"
-  - [ ] A `liquidation_date` será preenchida com a data atual
-  - [ ] O `amount_settled` será igual ao `amount_to_settle`
+- [x] Implementar uma funcionalidade acionada por um cron job que liquida os recebíveis, com base na data de agendamento:
+  - [x] Se a data de agendamento for igual à data atual e o status da parcela for "pendente", a parcela será marcada como "liquidado"
+  - [x] A `liquidation_date` será preenchida com a data atual
+  - [x] O `amount_settled` será igual ao `amount_to_settle`
 
 ## 6. Listagem das Transações
 
@@ -60,7 +60,7 @@ Cada parcela gerada deverá ter as seguintes informações:
 ## Tecnologias e Ferramentas Requeridas
 
 - [x] Ruby on Rails: Framework principal para a construção da API
-- [ ] Sidekiq: Para processamento assíncrono da liquidação de recebíveis
+- [x] Sidekiq: Para processamento assíncrono da liquidação de recebíveis
 - [x] RSpec: Para testes automatizados
 - [x] Banco de Dados (PostgreSQL/MySQL): Para armazenar as tabelas de transações, taxas e recebíveis
 - [x] Docker: Para facilitar a execução e a entrega da aplicação via containers

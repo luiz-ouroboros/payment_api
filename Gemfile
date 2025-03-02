@@ -13,6 +13,7 @@ gem 'thruster', require: false
 gem 'rack-cors'
 gem 'dotenv-rails'
 gem 'sidekiq'
+gem 'sidekiq-cron'
 gem 'dry-validation'
 gem 'u-case'
 gem 'audited'

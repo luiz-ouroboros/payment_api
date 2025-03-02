@@ -11,6 +11,8 @@ class CreateReceivables < ActiveRecord::Migration[8.0]
       t.decimal :amount_to_settle, precision: 10, scale: 2, null: false
       t.decimal :amount_settled, precision: 10, scale: 2, default: 0.0, null: false
       t.timestamps
+
+      t.index [:status, :schedule_date]
     end
   end
 end
