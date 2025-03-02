@@ -1,7 +1,8 @@
 class PaymentTransactionsController < ApplicationController
   def index
-    payment_transactions = PaymentTransaction.all
-    render json: payment_transactions, status: :ok
+    process_usecase(PaymentTransactions::Get) { |result|
+      render json: { data: result[:payment_transactions] }
+    }
   end
 
   def create

@@ -11,9 +11,11 @@ class Gateways::FakeGateway::Send < UseCase
 
   def call_gateway_api_client
     if payment_transaction.installments.even?
+      payment_transaction.approved_at = Time.zone.now
       payment_transaction.approved!
       Success(:call_gateway_api_client_success, result: { payment_transaction: payment_transaction })
     else
+      payment_transaction.reproved_at = Time.zone.now
       payment_transaction.reproved!
       Failure(
         :validation_error,

@@ -3,6 +3,9 @@ pt:
     date: !ruby/regexp '/\A\d{4}-\d{2}-\d{2}\z/'
     datetime: !ruby/regexp '/\A\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}[+-]\d{2}:\d{2}\z/'
   errors:
+    start_date_after_end_date: "A data de início deve ser anterior à data de término"
+    start_date_before_end_date: "A data de início deve ser anterior à hoje"
+    end_date_after_days_ago: "A data de término deve ser posterior à %{days} dias atrás"
     gateways:
       fake_gateway:
         installments_odd: "A quantidade de parcelas deve ser um número par"
