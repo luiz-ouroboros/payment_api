@@ -17,6 +17,7 @@ gem 'sidekiq-cron'
 gem 'dry-validation'
 gem 'u-case'
 gem 'audited'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'pry'

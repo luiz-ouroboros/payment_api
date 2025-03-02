@@ -411,6 +411,7 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    will_paginate (4.0.1)
     zeitwerk (2.7.2)
 
 PLATFORMS
@@ -457,6 +458,7 @@ DEPENDENCIES
   thruster
   tzinfo-data
   u-case
+  will_paginate
 
 BUNDLED WITH
    2.6.2
