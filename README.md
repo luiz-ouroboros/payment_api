@@ -55,7 +55,7 @@ Cada parcela gerada deverá ter as seguintes informações:
 
 ## 7. Listagem de Recebíveis
 
-- [ ] Implementar um endpoint para listar todos os recebíveis, com possibilidade de filtro por transações aprovadas
+- [x] Implementar um endpoint para listar todos os recebíveis, com possibilidade de filtro por transações aprovadas
 
 ## Tecnologias e Ferramentas Requeridas
 
