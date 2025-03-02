@@ -40,6 +40,7 @@ group :development do
 end
 
 group :test do
+  gem 'simplecov', require: false
   gem 'rspec-sidekiq'
   gem 'rspec-json_matcher', '~> 0.2.0'
 end

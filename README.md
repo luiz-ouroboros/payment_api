@@ -72,4 +72,4 @@ Cada parcela gerada deverá ter as seguintes informações:
 - [x] A aplicação deve estar configurada para rodar com Sidekiq para processamento assíncrono de recebíveis
 - [ ] O candidato deve garantir que todos os requisitos sejam atendidos e que a API funcione conforme o esperado
 - [ ] O código deve ser bem estruturado e legível
-- [ ] O código deve ter boa cobertura de testes
+- [x] O código deve ter boa cobertura de testes (99.22% de cobertura de código)
