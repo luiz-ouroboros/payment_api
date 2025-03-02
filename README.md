@@ -4,7 +4,7 @@ Este documento contém uma checklist dos requisitos e tarefas para o desenvolvim
 
 ## 1. Requisitos
 
-- [ ] Cálculo de retenção por parcelas
+- [x] Cálculo de retenção por parcelas
 - [ ] Liquidação de recebíveis
 - [x] Transações parceladas
 - [x] Controle de status das transações
@@ -20,8 +20,8 @@ Este documento contém uma checklist dos requisitos e tarefas para o desenvolvim
 ## 2. Tabela de Transações
 
 - [x] Criar uma tabela para armazenar as transações **(PaymentTransactions)**
-  - [ ] Implementar método para calcular valor de repasse da transação
-  - [ ] Implementar método para calcular valor de retenção da transação
+  - [x] Implementar método para calcular valor de repasse da transação
+  - [x] Implementar método para calcular valor de retenção da transação
 
 ## 3. Tabela de Taxas de Parcelamento
 
@@ -30,8 +30,8 @@ Este documento contém uma checklist dos requisitos e tarefas para o desenvolvim
 ## 4. Recebíveis
 
 - [x] Implementar uma tabela para armazenar os recebiveis **(Receivables)**
-  - [ ] Implementar método para calcular valor de repasse da parcela
-  - [ ] Implementar método para calcular valor de retenção da parcela
+  - [x] Implementar método para calcular valor de repasse da parcela
+  - [x] Implementar método para calcular valor de retenção da parcela
 
 Cada parcela gerada deverá ter as seguintes informações:
 - [x] **schedule_date** Data de agendamento da parcela, que será a data da transação somada ao número de meses correspondente ao número da parcela
