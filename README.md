@@ -4,7 +4,7 @@ Este documento contém uma checklist dos requisitos e tarefas para o desenvolvim
 
 ## Banco de Dados
 
-![ERD](https://github.com/luiz-ouroboros/payment_api/blob/78eba055257b794a298bbbdf1500977ca863e388/public/db_erd.png)
+![ERD](https://github.com/luiz-ouroboros/payment_api/blob/master/public/db_erd.png)
 
 ## 1. Requisitos
 
